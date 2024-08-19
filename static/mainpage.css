@@ -1,0 +1,58 @@
+.company-logo {
+    width: 185px;
+    height: auto;
+}
+
+h3 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 25px;
+}
+
+h4 {
+    font-size: 18px;
+    color: gray;
+    text-align: center;
+}
+
+.banner-fst {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.banner-sec {
+    width: 916px;
+    height: 305px;
+}
+
+.p {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 0.1px;
+}
+
+h5 {
+    font-size: 14px;
+    color: gray;
+    margin-top: 0.1px;
+}
+
+.special-offers-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.special-offers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+.special-offer img {
+    width: 45%;
+    height: auto;
+}
+

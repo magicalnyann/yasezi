@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script src="{% static 'js/mainpage.js' %}"></script>
+<link rel="stylesheet" href="{% static 'mainpage.css' %}">
+<header class="banner-fst">
+    <div class="container px-lg-5">
+            <div id="banner-slider">
+                {% for banner in banners %}
+                    <div class="banner-slide">
+                        <img src="{{ banner.image.url }}" alt="{{ banner.alt_text }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<h3> 냥님들을 위한 후회없는 선택 👉 </h3>
+<h4>믿고 주문하는 야세지!</h4>
+
+<div class="rolling-container">
+    <div class="rolling-list">
+        {% for review in reviews %}
+            <div class="review-slide">
+                <img src="{{ review.image.url }}" alt="{{ review.alt_text }}">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="special-offers-container">
+    <div class="text-section">
+        <p class="p">✨오늘의 야세지 공구</p><br>
+        <h5>오늘이 지나면 혜택이 사라져요</h5>
+        <div id="countdown"></div>
+    </div>
+    <div id="special-offers">
+        {% for offer in special_offers %}
+            <div class="special-offer">
+                <img
+                    src="{{ offer.image.url }}"
+                    alt="{{ offer.description }}"
+                    onclick="window.location.href='/mysite/recomm/{{ offer.id }}/';"
+                    style="cursor: pointer;"/>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

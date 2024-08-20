@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <div id="info">
+        <h1>Community-Lounge</h1>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+      <div class="form-group">
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" value="{{ form.title.value }}">
+    </div>
+
+    <div class="form-group">
+        <label for="image">이미지</label>
+        <input type="file" id="image" name="image">
+    </div>
+
+    <div class="form-group">
+        <label for="content">내용</label>
+        <textarea id="content" name="content" rows="10">{{ form.content.value }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <button type="submit">확인!</button>
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<script src="{% static 'JS/shop.js' %}"></script>
+<link rel="stylesheet" href="{% static 'goodok.css' %}">
+
+<section class="product-detail py-5">
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img class="img-detail" src="{{ content.image.url }}"alt="{{ content.title }}" style="width: 600px; height: 700px;" />
+            </div>
+            <div class="col-md-6">
+                <h1 class="product-title">{{ content.title }}</h1>
+                <div class="product-price fs-5 mb-5">
+                    <span>KRW {{ content.price }}</span>
+                </div>
+                <p class="product-description lead">{{ content.content }}</p>
+                <div class="add-to-cart">
+                    <button class="cart-detail" type="button">🛒 담기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 댓글 QnA 구역 -->
+<section class="comments-section mb-5">
+    <div class="container">
+        <div class="comments-card bg-light">
+            <div class="comments-body">
+                <form method="post" action="{% url 'comment_create' content_id=content.id %}" class="comment-form mb-4">
+                    {% csrf_token %}
+                    <textarea id="content" name="content" class="comment-textarea form-control" rows="3"
+                              placeholder="최소한의 인간의 존엄성은 버리지 말아 주세요 여기는 화장실이 아닙니다
+                                          욕설/성희롱/타인의 개인정보 무단배포시 민.형사상의 책임을 묻습니다
+                                          야세지는 이에 대해 철저한 불관용 원칙을 적용 합니다"></textarea>
+                    <button type="submit" class="submit-button">확인</button>
+                </form>
+                {% for comment in content.comment_set.all %}
+                <div class="comment mb-3">
+                    <div class="comment-author ms-3">
+                        <div class="fw-bold">{{ comment.author.username }} &nbsp; {{ comment.create_date }}</div>
+                         {% if comment.create_date != comment.modify_date %}
+                         수정일자: {{ comment.modify_date }}
+                        {% endif %}
+                        {% if request.user == comment.author %}
+                            <a href="{% url 'comment_update' comment.id %}" class="re-comment">수정</a>
+                            <a href="{% url 'comment_delete' comment.id %}" class="comment-delete">삭제</a>
+                        {% endif %}
+                    </div>
+                    <p class="comment-content">{{ comment.content }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

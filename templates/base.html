@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>세상의 모든 야옹이가 행복해지는 그 날 까지!</title>
+   {% load static %}
+   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'mainpage.css' %}">
+
 </head>
 <body>
-$END$
+
+ <header>
+  <img src="{% static 'images/메인.jpg' %}" alt="Company Logo" class="company-logo" style="width: 185px; height: auto;"/>
+  </header>
+
+  {% include "navbar.html" %}
+
+  {% block content %}
+  {% endblock %}
+
+  {% include "footer.html" %}
 </body>
 </html>

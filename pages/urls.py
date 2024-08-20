@@ -17,8 +17,9 @@ Including another URLconf
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
-path('', views.mainpage),
-path('company/', views.company),
+path('commu/', views.commu, name='commu'),
+path('add_lounge/', views.add_lounge, name='add_lounge'),
+path('lounge/<int:pk>/', views.lounge_detail, name='lounge_detail'),
+path('event/', views.event, name='event'),
 ]

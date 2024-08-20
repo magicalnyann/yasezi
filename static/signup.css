@@ -1,0 +1,110 @@
+h1 {
+    font-family: 'Arial', sans-serif;
+    color: #ff0099;
+    font-size: 65px;
+    font-weight: bolder;
+}
+
+
+table {
+    width: 55%;
+    height: 950px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+td {
+    padding-bottom: 1px;
+}
+
+td label {
+    display: block;
+    margin-bottom: 1px;
+    font-weight: bold;
+    color: #393636;
+}
+
+input[type="text"], input[type="password"], input[type="date"], select {
+    width: 300px;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #393636;
+    border-radius: 25px;
+    font-size: 13px;
+    background-color: #c5bfbf;
+}
+
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #ff079c;
+    outline: none;
+    background-color: #F2F2F2;
+}
+
+input[name="email"] {
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #393636;
+    border-radius: 25px;
+    font-size: 13px;
+    background-color: #c5bfbf;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #ff079c;
+    outline: none;
+    background-color: #F2F2F2;
+}
+
+.text {
+    width: 250px;
+    height: 38px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233,233,233);
+}
+
+select {
+    width: 150px;
+    height: 38px;
+    font-size: 15px;
+    border: 1;
+    border-color: lightgray;
+    border-radius: 25px;
+    outline: 1px solid black;
+    padding-left: 10px;
+}
+
+.btn {
+    width: 350px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: #ff00c4;
+    margin-top: 50px;
+    color: #ffffff
+}
+
+
+.btn:active {
+    width: 280px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bolder;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: #ff00c4;
+    margin-top: 50px;
+    color: #3a3737
+}

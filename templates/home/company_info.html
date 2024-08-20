@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <link rel="stylesheet" href="{% static 'mainpage.css' %}">
 </head>
-<body>
-$END$
-</body>
-</html>
+
+<div id="info">
+    <h1>About-Yasezi</h1>
+</div>
+
+{% if company_info.videos.all %}
+    <div style="text-align: center;">
+        {% for video in company_info.videos.all %}
+            <div style="margin-bottom: 20px;">
+                <video width="600" controls>
+                    <source src="{{ video.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>{{ video.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <div>
+        <div id="sezi-fami">
+            <h1>Yasezi-Family</h1>
+        </div>
+
+        {% if company_info.image %}
+            <div style="text-align: center;">
+                <img src="{{ company_info.image.url }}" alt="{{ company_info.title }}">
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

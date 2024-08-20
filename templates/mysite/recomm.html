@@ -1,7 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1> 추천 페이지</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'goodok.css' %}">
 
+<div>
+    <div id="info">
+<h1>Recommend</h1>
+    </div>
+</div>
 
+<section class="products-section">
+    <div class="container product-container">
+        <div class="product-grid">
+            {% if contents %}
+                {% for content in contents %}
+                    <div class="product-item">
+                        <div class="goodok-item">
+                            <img class="product-image" src="{{ content.image.url }}" alt="{{ content.title }}"
+                                onclick="window.location.href='/mysite/recomm/{{ content.id }}/';" />
+                        </div>
+                        <div class="product-details">
+                            <div class="product-info">
+                                <h5 class="product-title">{{ content.title }}</h5>
+                                <p class="product-price">KRW {{ content.price }}</p>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="footer-content">
+                                <a class="cart-list" href="{{ content.link_url }}">🛒 담기</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-content-message">content가 없습니다.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
 {% endblock %}

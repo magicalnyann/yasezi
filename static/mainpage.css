@@ -1,58 +1,146 @@
-.company-logo {
-    width: 185px;
-    height: auto;
+
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+#info {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ff00c4;
+}
+
+#sezi-fami {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ff00c4;
+    text-align: right;
+    margin-top: 30px;
 }
 
 h3 {
     font-weight: bold;
     text-align: center;
     font-size: 24px;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 19px;
     color: gray;
     text-align: center;
 }
 
 .banner-fst {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
-.banner-sec {
-    width: 916px;
-    height: 305px;
+#banner-slider {
+    width: 100%;
+    position: relative;
+}
+
+.banner-slide {
+    width: 100%;
+    position: relative;
+}
+
+.banner-slide img {
+     width: 100%;
+    object-fit: cover;
+
+}
+
+
+.rolling-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+}
+
+.rolling-list {
+    display: flex;
+    width: calc(200% + 10px);
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.review-slide {
+    flex: 0 0 auto;
+    width: 500px;
+    height: 300px;
+    margin-right: 10px;
+}
+
+.review-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.special-offers-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 50px;
 }
 
 .p {
     font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 0.1px;
+    font-size: 25px;
+    line-height: 0.9;
 }
 
 h5 {
-    font-size: 14px;
-    color: gray;
-    margin-top: 0.1px;
+    font-size: 16px;
+    color: #4f4f4f;
+    line-height: 0.9;
 }
 
-.special-offers-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+#countdown {
+    font-weight: bold;
+    color: #ff00c4;
+    font-size: 25px;
+    line-height: 0.9;
 }
 
-.special-offers {
+.text-section {
+    max-width: 100%;
+    text-align: left;
+}
+
+#special-offers {
     display: flex;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 100px;
+    gap: 10px;
+    max-width: 100%;
+    margin-left: auto;
 }
 
 .special-offer img {
-    width: 45%;
+    width: 50%;
     height: auto;
+    margin-left:200px;
 }
 
+
+/*어바웃 페이지*/
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+video {
+    max-width: 100%;
+}

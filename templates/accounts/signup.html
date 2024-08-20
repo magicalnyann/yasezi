@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+    <script src="{% static 'JS/adress.js' %}"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=74f2b70066f85edd5b93633ee54dd8cc&libraries=services"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+   <!--여기서 부터 가입 폼 구역-->
+    <form method="post" action="{% url 'accounts:signup' %}">
+        {% csrf_token %}
+        <h1>Welcome!</h1>
+        <div class="form-inner">
+            <table>
+                <tr>
+                    <td>{{ form.id.label_tag }}</td>
+                    <td>{{ form.id }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password1.label_tag }}</td>
+                    <td>{{ form.password1 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password2.label_tag }}</td>
+                    <td>{{ form.password2 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.name.label_tag }}</td>
+                    <td>{{ form.name }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.birth_date.label_tag }}</td>
+                    <td>{{ form.birth_date }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.email.label_tag }}</td>
+                    <td>{{ form.email }} @
+                        <select name="email_domain">
+                            <option value="naver.com">naver.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="daum.net">daum.net</option>
+                            <option value="nate.com">yahoo.com</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ form.address.label_tag }}</td>
+                    <td>
+                        <input type="text" id="address" name="address" value="{{ form.address.value }}" />
+                        <button type="button" onclick="searchAddress()">주소 검색</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ form.address_detail.label_tag }}</td>
+                    <td>
+                        <input type="text" id="address_detail" name="address_detail" value="{{ form.address_detail.value }}" />
+                    </td>
+                </tr>
+
+                    <td>{{ form.phone_number.label_tag }}</td>
+                    <td>{{ form.phone_number }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.gender.label_tag }}</td>
+                    <td>{{ form.gender }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.breed.label_tag }}</td>
+                    <td>{{ form.breed }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.cat_name.label_tag }}</td>
+                    <td>{{ form.cat_name }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn">가입하기</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+{% endblock %}

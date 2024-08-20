@@ -1,10 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages.css' %}">
+
+
+<div>
+    <div id="info">
+<h1>Community-Lounge</h1>
+    </div>
+</div>
+
+<div id="lounge-list">
+        <table>
+        <thead>
+            <tr>
+                <th>첨부이미지</th>
+                <th>제목</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lounge in page_obj %}
+            <tr>
+                <td>
+                    <a href="{% url 'lounge_detail' lounge.id %}">
+                        {% if lounge.image %}
+                            <img src="{{ lounge.image.url }}" alt="{{ lounge.title }}" class="lounge-image">
+                        {% else %}
+                            <img src="{% static 'images/기본이미지.gif' %}" alt="기본 이미지" class="lounge-image">
+                        {% endif %}
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'lounge_detail' lounge.id %}">{{ lounge.title }}</a>
+                </td>
+                <td>{{ lounge.pub_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">아직 글이 없어요. 지금 첫 글을 써 보세요!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; 첫 페이지</a>
+            <a href="?page={{ page_obj.previous_page_number }}">◀ 이전</a>
+        {% endif %}
+
+        <span class="current">
+            페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">다음 ▶</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">마지막 페이지 &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<a href="{% url 'add_lounge' %}" class="btn">글 쓰기 🖊️</a>
+{% endblock %}

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+ <link rel="stylesheet" href="{% static 'pages.css' %}">
+
 
 <div>
     <div id="info">
@@ -7,9 +10,14 @@
     </div>
 
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    {% csrf_token %}
 
-      <div class="form-group">
+    <div class="form-group">
+        <input type="checkbox" id="is_anonymous" name="is_anonymous" {% if form.is_anonymous.value %}checked{% endif %}>
+        <label for="is_anonymous">익명으로 작성</label>
+    </div>
+
+   <div class="form-group">
         <label for="title">제목</label>
         <input type="text" id="title" name="title" value="{{ form.title.value }}">
     </div>
@@ -27,6 +35,8 @@
     <div class="form-group">
         <button type="submit">확인!</button>
     </div>
-</form>
+
+
+    </form>
 </div>
 {% endblock %}

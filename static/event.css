@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.img-eve {
+    border: none;
+    box-shadow: none;
+    width: 350px;
+}
+
+#imageButtonContainer {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+#nyanImage {
+    width: 95%;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<script src="{% static 'JS/shop.js' %}"></script>
+<link rel="stylesheet" href="{% static 'pages.css' %}">
+
+
+<section class="mb-5">
+    <div class="card bg-light">
+        <div class="card-body">
+            <form method="post" class="mb-4" action="{% url 'comments_update' lounge_id comment_id %}">
+            {% csrf_token %}
+            <textarea id="content" name="content" class="form-control" rows="3">{{ form.content.value }}</textarea>
+            <button type="submit" class="btn btn-primary">수정하기!</button>
+            <a href="{% url 'lounge_detail' lounge_id=lounge_id %}">돌아가기</a>
+        </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

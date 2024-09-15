@@ -4,7 +4,9 @@
 <script src="{% static 'JS/shop.js' %}"></script>
 <link rel="stylesheet" href="{% static 'goodok.css' %}">
 
-<h2> update comment</h2>
+<h2>댓글수정!</h2>
+
+
 <section class="mb-5">
     <div class="card bg-light">
         <div class="card-body">
@@ -12,7 +14,7 @@
                 {% csrf_token %}
                 <textarea id="content" name="content" class="form-control"
                   rows="3">{{ form.content.value }}</textarea>
-                <button type="submit" class="btn btn-primary">submit</button>
+                <button type="submit" class="btn btn-primary">수정하기!</button>
             </form>
         </div>
     </div>

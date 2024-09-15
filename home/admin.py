@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import BannerImage, ReviewImage, SpecialOffer,CompanyInfo,CompanyVideo
+from .models import BannerImage, ReviewImage, SpecialOffer,CompanyInfo,CompanyVideo, ReviewImage2
 
 
 @admin.register(BannerImage)
@@ -9,6 +9,11 @@ class BannerImageAdmin(admin.ModelAdmin):
     list_display = ('alt_text',)
 
 @admin.register(ReviewImage)
+class ReviewImageAdmin(admin.ModelAdmin):
+    list_display = ('alt_text',)
+
+
+@admin.register(ReviewImage2)
 class ReviewImageAdmin(admin.ModelAdmin):
     list_display = ('alt_text',)
 

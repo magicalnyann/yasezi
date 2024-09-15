@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class MainContent(models.Model):
+
     category = models.CharField(max_length=100, default='default_category')
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     title = models.CharField(max_length=200)
@@ -13,6 +14,7 @@ class MainContent(models.Model):
         return self.title
 
 class RecommProduct(models.Model):
+
     category = models.CharField(max_length=100, default='default_category')
     image = models.ImageField(upload_to='recomm_products/')
     title = models.CharField(max_length=200)
@@ -25,6 +27,7 @@ class RecommProduct(models.Model):
 
 
 class Comment(models.Model):
+
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content_list = models.ForeignKey(MainContent, on_delete=models.CASCADE)
     content = models.TextField()

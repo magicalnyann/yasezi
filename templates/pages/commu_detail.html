@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'pages.css' %}">
+<link rel="stylesheet" href="{% static 'heart.css' %}">
+<script src="{% static 'JS/lounge.js' %}"></script>
+
+<section>
+
+<div>
+    <div id="cotitle">
+        {{ lounge.title }}
+    </div>
+</div>
+
+<div>
+    <div id="coname">
+        게시일: {{ lounge.pub_date }}
+        <p>작성자: {% if lounge.is_anonymous %}N/A{% else %}{{ lounge.author.username|default:"N/A" }}{% endif %}</p>
+    </div>
+</div>
+
+<div class="lounge-actions">
+    <a href="{% url 'lounge_edit' lounge.id %}" class="lounge_edit">수정</a>
+</div>
+<form action="{% url 'lounge_del' lounge.id %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="lounge_del">삭제</button>
+</form>
+
+
+
+<div id="lounge-detail">
+   {% if lounge.image %}
+    <img class="commu-page2" src="{{ lounge.image.url }}" alt="{{ lounge.title }}" width="500"/>
+   {% else %}
+    <img src="{% static 'images/기본이미지.gif' %}" alt="기본 이미지">
+   {% endif %}
+   <div class="content-box">
+        <p>{{ lounge.content }}</p>
+   </div>
+</div>
+
+<div class="button-container">
+    <div id="googoo">
+        <div class="button-wrapper">
+            <a href="javascript:void(0);" class="btn-goo" onclick="handleClick('like')">좋아요! 💖</a>
+            <span id="like-counter" class="counter">{{ lounge.likes }}</span>
+        </div>
+        <div class="button-wrapper">
+            <a href="javascript:void(0);" class="btn-nono" onclick="handleClick('dislike')">노매너! 🤮</a>
+            <span id="dislike-counter" class="counter">{{ lounge.dislikes }}</span>
+        </div>
+    </div>
+    <div id="emoji-container"></div>
+</div>
+
+
+ <!-- 로딩 인디케이터 -->
+<div id="loading" style="display: none;">Loading...</div>
+
+<div class="back-button">
+        <a href="{% url 'commu' %}" class="btn-back">목록으로 돌아가기</a>
+</div>
+</section>
+
+<section class="comments-section">
+    <div class="comments-container">
+
+        <form method="post" action="{% url 'make_comments' lounge.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <textarea name="content" class="form-control" rows="3" placeholder="내용을 입력해주세요."></textarea>
+            <input type="file" name="image">
+            <button type="submit" class="comment_go">댓글쓰기</button>
+        </form>
+        
+        <!-- 댓글 목록 -->
+        {% for comment in comments %}
+        <div class="comment2">
+            <div class="fw-bold">{{ comment.author.username }} &nbsp;&nbsp; {{ comment.create_date }}</div>
+            <div class="comment-body2">
+                {% if comment.image %}
+                <img src="{{ comment.image.url }}" width="100" height="100" alt="댓글 이미지">
+                {% endif %}
+                <p>{{ comment.content }}</p>
+                <button type="button" class="dedet_go" onclick="toggleReplyForm('{{ comment.id }}')">대댓달기! 🔗</button>                     
+
+                <label for="heart-btn1" class="heart-button">
+                    <input type="checkbox" id="heart-btn1" hidden>
+                    <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2271">
+                        <path d="M742.4 101.12A249.6 249.6 0 0 0 512 256a249.6 249.6 0 0 0-230.72-154.88C143.68 101.12 32 238.4 32 376.32c0 301.44 416 546.56 480 546.56s480-245.12 480-546.56c0-137.92-111.68-275.2-249.6-275.2z" fill="#231F20" p-id="2272" id="heart-comment"></path>
+                    </svg>
+                    <span class="heart"></span>
+                </label>
+               
+                <!-- 대댓글 작성 폼 -->
+                <div id="reply-form-{{ comment.id }}" style="display:none;">
+                    <form method="post" action="{% url 'dedet' lounge.id comment.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea name="content" class="form-control" rows="3" placeholder="대댓글을 입력해주세요."></textarea>
+                        <input type="file" name="image" accept="image/*">
+                        <button type="submit" class="comment_go">대댓글 쓰기</button>
+                    </form>
+                </div> 
+            </div> 
+        </div> 
+        {% endfor %}
+    </div> 
+
+    <!-- 대댓글 목록  -->
+    <div class="replies-container">
+        {% for comment in comments %}
+        <div class="dedet_list">
+            {% for reply in comment.reply_replies.all %}
+            <div class="dedet_body">
+                <div class="comment-author">
+                    @{{ comment.author.username }} &nbsp;&nbsp;<br>
+                    {{ reply.author.username }}{{ reply.create_date }}<br>
+                </div>
+                {% if reply.image %}
+                <img src="{{ reply.image.url }}" width="100" height="100" alt="대댓글 이미지" style="margin-left: 10px;">
+                {% endif %}
+                <div class="reply-content-container">
+                    <p class="reply-content">{{ reply.content }}</p>
+                     
+                    <label for="heart-btn2" class="heart-button2">
+                        <input type="checkbox" id="heart-btn2" hidden>
+                        <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2271">
+                            <path d="M742.4 101.12A249.6 249.6 0 0 0 512 256a249.6 249.6 0 0 0-230.72-154.88C143.68 101.12 32 238.4 32 376.32c0 301.44 416 546.56 480 546.56s480-245.12 480-546.56c0-137.92-111.68-275.2-249.6-275.2z" fill="#231F20" p-id="2272" id="heart-reply"></path>
+                        </svg>
+                        <span class="heart2"></span>
+                    </label>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div> 
+        {% endfor %}
+    </div> 
+</section>
+
+
+<script>
+    function toggleReplyForm(commentId) {
+        var replyForm = document.getElementById('reply-form-' + commentId);
+        if (replyForm.style.display === "none") {
+            replyForm.style.display = "block";
+        } else {
+            replyForm.style.display = "none";
+        }
+    }
+
+    var likeUrl = "{% url 'like_lounge' lounge.id %}";
+    var dislikeUrl = "{% url 'dislike_lounge' lounge.id %}";
+    var csrfToken = "{{ csrf_token }}";
+</script>
+
+{% endblock %}

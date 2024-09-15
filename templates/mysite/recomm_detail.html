@@ -3,6 +3,8 @@
 {% load static %}
 <script src="{% static 'JS/shop.js' %}"></script>
 <link rel="stylesheet" href="{% static 'goodok.css' %}">
+<link rel="stylesheet" href="{% static 'det-gul.css' %}">
+
 
 <section class="product-detail py-5">
     <div class="container my-5">
@@ -32,7 +34,7 @@
                 <form method="post" action="{% url 'comment_create' content_id=content.id %}" class="comment-form mb-4">
                     {% csrf_token %}
                     <textarea id="content" name="content" class="comment-textarea form-control" rows="3"
-                              placeholder="최소한의 인간의 존엄성은 버리지 말아 주세요 여기는 화장실이 아닙니다
+                              placeholder="제발 예의를 지켜 주세요 감정은 배설하는것이 아닌 표현하는것!
                                           욕설/성희롱/타인의 개인정보 무단배포시 민.형사상의 책임을 묻습니다
                                           야세지는 이에 대해 철저한 불관용 원칙을 적용 합니다"></textarea>
                     <button type="submit" class="submit-button">확인</button>

@@ -10,6 +10,8 @@ class Profile(models.Model):
     birth_date = models.DateField(blank=True, null=True)
     breed = models.CharField(max_length=50, blank=True, null=True)
     cat_name = models.CharField(max_length=50, blank=True, null=True)
+    #포인트 필드 admin 이외 관리 금지
+    points = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username

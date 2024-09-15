@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
+    path('evento/', include('evento.urls')),
 ]
 
 #미디어 파일 서빙

@@ -3351,8 +3351,8 @@ textarea.form-control-lg {
 
 .navbar-dark {
   width: 100%;
-  margin-top: 20px;
-  background-color:#f3efef;!important;
+  margin-top: 70px;
+  background-color:#ffffff;
   font-weight: bolder;
 }
 
@@ -10418,4 +10418,49 @@ footer {
 
 .ban-pum {
     margin-top: 10px;
+}
+
+#searchBar {
+    display: inline-block;
+  	position: absolute;
+    margin-top: 30px;
+	margin-bottom: 20px;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#searchInput {
+	padding: 8px;
+	border: 2px solid #ff00c4;
+	border-radius: 5px;
+	font-size: 14px;
+	vertical-align: middle;
+    width: 500px
+}
+
+#searchInput:focus  {
+	border: 2px solid #5e198f;
+    background-color: #eff0ef;
+}
+
+
+
+#searchButton {
+    padding: 8px 16px;
+    border: none;
+    background-color: #ffffff;
+    color: #6f42c1;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#searchButton:hover {
+    transform: scale(1.1);
 }

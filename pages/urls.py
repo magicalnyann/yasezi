@@ -16,10 +16,18 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from .views import like_lounge, dislike_lounge
 
 urlpatterns = [
 path('commu/', views.commu, name='commu'),
 path('add_lounge/', views.add_lounge, name='add_lounge'),
-path('lounge/<int:pk>/', views.lounge_detail, name='lounge_detail'),
-path('event/', views.event, name='event'),
+path('lounge/<int:lounge_id>/', views.commu_detail, name='commu_detail'),
+path('lounge/<int:lounge_id>/edit/', views.lounge_edit, name='lounge_edit'),
+path('lounge/<int:lounge_id>/del/', views.lounge_del, name='lounge_del'),
+path('lounge/<int:lounge_id>/like/', like_lounge, name='like_lounge'),
+path('lounge/<int:lounge_id>/dislike/', dislike_lounge, name='dislike_lounge'),
+path('lounge/comments/<int:lounge_id>/', views.make_comments, name='make_comments'),
+path('lounge/comments/<int:lounge_id>/dedet/<int:parent_comment_id>/', views.dedet, name='dedet'),
+path('comments/<int:comment_id>/toggle_like/', views.toggle_like, name='toggle_like'),
+path('replies/<int:reply_id>/toggle_like/', views.toggle_reply_like, name='toggle_reply_like'),
 ]

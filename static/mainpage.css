@@ -3,8 +3,52 @@ body {
     background-color: #ffffff;
     margin: 0;
     padding: 0;
-    font-size: 16px;
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+.company-logo {
+  width: 185px;
+  height: auto;
+}
+
+.language-selector {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+
+.language-button {
+   background-color: #ffffff;
+    font-weight: bold;
+    border: none;
+    color: #ff00c4;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.language-button:hover {
+    color: #5e198f;
+}
+
 
 #info {
     font-weight: bold;
@@ -46,7 +90,14 @@ h4 {
 .banner-slide {
     width: 100%;
     position: relative;
+    display: none;
 }
+
+
+.banner-slide.active {
+    display: block;
+}
+
 
 .banner-slide img {
      width: 100%;
@@ -54,12 +105,59 @@ h4 {
 
 }
 
+.banner-Button {
+    background-color: rgba(170, 170, 170, 0.6);
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+    position: absolute;
+    top: 63%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
 
-.rolling-container {
+.banner-Button:hover {
+    background-color: rgba(92, 99, 106, 0.6);
+    box-shadow: 0 4px 8px rgba(57, 57, 57, 0.3);
+    color: #fff;
+}
+
+#prevButton {
+    left: 10px;
+}
+
+#nextButton {
+    right: 10px;
+}
+
+#banner-slider {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 300px;
+}
+
+
+
+
+/*리뷰 롤링배너*/
+
+.wrap {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 280px;
+}
+
+.wrap-2 {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 280px;
+    margin-top: 15px;
 }
 
 .rolling-list {
@@ -70,20 +168,40 @@ h4 {
     left: 0;
 }
 
-.review-slide {
+.rolling-list-2 {
+    display: flex;
+    width: calc(200% + 10px);
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.review-slide, .review-slide2 {
     flex: 0 0 auto;
     width: 500px;
     height: 300px;
     margin-right: 10px;
 }
 
-.review-slide img {
+.review-slide img, .review-slide2 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 
+.review-slide {
+    margin-top: 30px;
+}
+
+.review-slide2 {
+    margin-top: 20px;
+}
+
+
+
+
+/*특가상품 페이지*/
 .special-offers-container {
     display: flex;
     justify-content: space-between;
@@ -91,45 +209,56 @@ h4 {
     align-items: center;
     gap: 10px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
+.text-section {
+    white-space: nowrap;
+    max-width: 80%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+
+.p, h5, #countdown {
+    margin: 0;
+    padding: 0;
+}
+
+/* 각 텍스트 요소의 스타일 */
 .p {
     font-weight: bold;
-    font-size: 25px;
-    line-height: 0.9;
+    font-size: clamp(16px, 4vw, 25px);
+    line-height: 1.2;
 }
 
 h5 {
-    font-size: 16px;
-    color: #4f4f4f;
-    line-height: 0.9;
+    font-size: clamp(12px, 3vw, 16px);
+    color: #5c636a;
+    line-height: 1.3;
 }
 
 #countdown {
     font-weight: bold;
     color: #ff00c4;
-    font-size: 25px;
-    line-height: 0.9;
-}
-
-.text-section {
-    max-width: 100%;
-    text-align: left;
+    font-size: clamp(20px, 4vw, 25px);
+    line-height: 1.2;
 }
 
 #special-offers {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 10px;
-    max-width: 100%;
-    margin-left: auto;
+    max-width: 90%;
+    padding: 0;
 }
 
 .special-offer img {
     width: 50%;
     height: auto;
-    margin-left:200px;
+    margin-left:250px;
 }
 
 

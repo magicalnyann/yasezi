@@ -1,4 +1,3 @@
-
 from django.db import models
 
 class BannerImage(models.Model):
@@ -14,6 +13,16 @@ class ReviewImage(models.Model):
 
     def __str__(self):
         return self.alt_text or "Review Image"
+
+
+class ReviewImage2(models.Model):
+    image = models.ImageField(upload_to='reviews2/')
+    alt_text = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return self.alt_text or "Review Image"
+
+
 
 class SpecialOffer(models.Model):
     image = models.ImageField(upload_to='special_offers/')

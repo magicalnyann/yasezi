@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'event.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'JS/nyann.js' %}"></script>
+<script src="{% static 'JS/points.js' %}"></script>
+
+
+<div>
+    <div id="info">
+        <h2>이벤트-존 🥳 </h2>
+    </div>
+</div>
+
+
+{% for evento in eventos %}
+<div class="container">
+    <div class="main-eve">
+        <img class="img-eve" src="{{ evento.main_event.url }}" alt="Event Image" />
+    </div>
+</div>
+
+
+<div id="imageButtonContainer">
+    <img id="nyanImage" class="img-eve2" src="{{ evento.nyan_ncat.url }}" alt="Nyan Ncat Image" data-evento-id="{{ evento.id }}" data-pok-pal-url="{{ evento.pok_pal.url }}" />
+</div>
+
+{% endfor %}
+
+{% endblock %}

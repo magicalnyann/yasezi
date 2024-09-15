@@ -1,28 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<script src="{% static 'js/mainpage.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'JS/mainpage.js' %}"></script>
+<script src="{% static 'JS/slide.js' %}"></script>
+ <script src="{% static 'JS/slide2.js' %}"></script>
 <link rel="stylesheet" href="{% static 'mainpage.css' %}">
+
+
+
 <header class="banner-fst">
     <div class="container px-lg-5">
-            <div id="banner-slider">
-                {% for banner in banners %}
-                    <div class="banner-slide">
-                        <img src="{{ banner.image.url }}" alt="{{ banner.alt_text }}">
-                    </div>
-                {% endfor %}
-            </div>
+        <div id="banner-slider">
+            {% for banner in banners %}
+                <div class="banner-slide">
+                    <img src="{{ banner.image.url }}" alt="{{ banner.alt_text }}">
+                </div>
+            {% endfor %}
         </div>
     </div>
 </header>
 
+
+
 <h3> 냥님들을 위한 후회없는 선택 👉 </h3>
 <h4>믿고 주문하는 야세지!</h4>
 
-<div class="rolling-container">
-    <div class="rolling-list">
+
+<div class="wrap">
+    <div class="rolling-list" id="roller1">
+        <!-- 첫 번째 슬라이드 원본 -->
         {% for review in reviews %}
             <div class="review-slide">
+                <img src="{{ review.image.url }}" alt="{{ review.alt_text }}">
+            </div>
+        {% endfor %}
+        <!-- 첫 번째 슬라이드 클론 -->
+        {% for review in reviews %}
+            <div class="review-slide">
+                <img src="{{ review.image.url }}" alt="{{ review.alt_text }}">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="wrap-2">
+    <div class="rolling-list-2" id="roller2">
+        <!-- 두 번째 슬라이드 원본 -->
+        {% for review in reviews2 %}
+            <div class="review-slide review-slide2">
+                <img src="{{ review.image.url }}" alt="{{ review.alt_text }}">
+            </div>
+        {% endfor %}
+        <!-- 두 번째 슬라이드 클론 -->
+        {% for review in reviews2 %}
+            <div class="review-slide review-slide2">
                 <img src="{{ review.image.url }}" alt="{{ review.alt_text }}">
             </div>
         {% endfor %}
@@ -36,16 +68,19 @@
         <h5>오늘이 지나면 혜택이 사라져요</h5>
         <div id="countdown"></div>
     </div>
-    <div id="special-offers">
-        {% for offer in special_offers %}
-            <div class="special-offer">
-                <img
-                    src="{{ offer.image.url }}"
-                    alt="{{ offer.description }}"
-                    onclick="window.location.href='/mysite/recomm/{{ offer.id }}/';"
-                    style="cursor: pointer;"/>
-            </div>
-        {% endfor %}
+
+    <div class="offers-wrapper">
+        <div id="special-offers">
+            {% for offer in special_offers %}
+                <div class="special-offer">
+                    <img
+                        src="{{ offer.image.url }}"
+                        alt="{{ offer.description }}"
+                        onclick="window.location.href='/mysite/recomm/{{ offer.id }}/';"
+                        style="cursor: pointer;"/>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

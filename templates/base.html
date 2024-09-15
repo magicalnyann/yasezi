@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>세상의 모든 야옹이가 행복해지는 그 날 까지!</title>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token }}">
+    <title>세상의 모든 야옹이가 행복해지는 그 날 까지!</title>
    {% load static %}
    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'mainpage.css' %}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'JS/points.js' %}"></script>
 </head>
-<body>
 
+<body>
+<div class="header-container">
  <header>
-  <img src="{% static 'images/메인.jpg' %}" alt="Company Logo" class="company-logo" style="width: 185px; height: auto;"/>
+    <img src="{% static 'images/메인.jpg' %}" alt="Company Logo" class="company-logo"/>
   </header>
 
-  {% include "navbar.html" %}
+<div class="language-selector">
+        <button class="language-button" data-language="ja">日本語</button>
+        <button class="language-button" data-language="en">English</button>
+        <button class="language-button" data-language="zh">中文</button>
+     </div>
+</div>
 
+  {% include "navbar.html" %}
   {% block content %}
   {% endblock %}
 
